@@ -1,10 +1,7 @@
 development: &default
-  adapter: postgresql
-  database: tdd_example_development
-  encoding: utf8
-  min_messages: warning
-  pool: <%= Integer(ENV.fetch("DB_POOL", 5)) %>
-  reaping_frequency: <%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: db_development
   timeout: 5000
 
 test:
@@ -16,6 +13,6 @@ production: &deploy
   min_messages: warning
   pool: <%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  url:  <%= ENV.fetch("DATABASE_URL", "") %>
+  url: <%= ENV.fetch("DATABASE_URL", "") %>
 
 staging: *deploy
