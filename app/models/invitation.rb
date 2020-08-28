@@ -13,7 +13,7 @@ class Invitation < ApplicationRecord
     elsif valid?
       "PENDING - #{invitation_description}"
     else
-      "INVALID"
+      'INVALID'
     end
   end
 
